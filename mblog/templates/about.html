@@ -1,0 +1,68 @@
+{% load staticfiles %}
+{% load blog_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Black &amp; White</title>
+    <!-- meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load staticfiles %}
+    <link rel="icon" href="{% static "images/favicon.ico" %}" type="image/x-icon"/>
+    <!-- css -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static 'cblog/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'cblog/css/pace.css' %}">
+    <link rel="stylesheet" href="{% static 'cblog/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'cblog/css/highlights/github.css' %}">
+    <!-- js -->
+    <script src="{% static 'cblog/js/jquery-2.1.3.min.js' %}"></script>
+    <script src="{% static 'cblog/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'cblog/js/pace.min.js' %}"></script>
+    <script src="{% static 'cblog/js/modernizr.custom.js' %}"></script>
+</head>
+
+<body>
+<div class="container">
+    <header id="site-header">
+        <div class="row">
+            <div class="col-md-4 col-sm-5 col-xs-8">
+                <div class="logo">
+                    <h1><a href="{% url 'cblog:index' %}"><b>朝花</b> &amp; 夕拾</a></h1>
+                </div>
+            </div><!-- col-md-4 -->
+        </div>
+    </header>
+</div>
+
+
+<div class="content-body">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-10">
+                {% for about in about_list %}
+                    <article class="post post-#">
+                        <header class="entry-header">
+                            <h1 class="entry-title">
+                                <a>{{ about.title }}</a>
+                            </h1>
+                        </header>
+                        <div class="entry-content clearfix">
+                            <p>{{ about.body }}</p>
+                            <div class="read-more cl-effect-14">
+                                <a href="{% url 'cblog:index' %}" class="more-link">返回首页 <span class="meta-nav">→</span></a>
+                            </div>
+                        </div>
+                    </article>
+                {% empty %}
+                    <div class="no-post">暂时还没有发布的文章！</div>
+                {% endfor %}
+            </main>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'cblog/js/script.js' %}"></script>
+
+</body>
+</html>
